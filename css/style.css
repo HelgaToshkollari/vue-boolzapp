@@ -1,0 +1,41 @@
+*{
+    margin: 0 ;
+    padding: 0;
+    box-sizing: border-box;
+  
+}
+body{
+    background-color: rgb(221, 219, 207);
+}
+h6, p{
+    margin: 0;
+}
+.second-bg{
+    background-color: rgb(104, 198, 175);
+    height: 20vh;
+
+}
+.main-box{
+    background-color: rgb(226, 222, 222);
+    max-width: 1200px ;
+    height: 100vh;
+    margin: 2rem auto;
+   
+
+}
+.side-bar{
+    width: 350px;
+    background-color: rgb(236, 236, 236);
+    border-right: 0.5px solid rgb(175, 174, 174);
+}
+.user img{
+    width: 60px;
+    height: 60px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    padding: .5rem;
+}
+
+.chat-display{
+    background-color: rgb(236, 236, 236);;
+}
