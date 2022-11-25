@@ -5,37 +5,60 @@
   
 }
 body{
-    background-color: rgb(221, 219, 207);
+    background: rgb(0,150,136);
+    background: linear-gradient(183deg, rgba(0,150,136,1) 0%, rgba(169,129,226,1) 100%);
+    height: 100vh;
 }
 h6, p{
     margin: 0;
 }
-.second-bg{
-    background-color: rgb(104, 198, 175);
-    height: 20vh;
 
-}
 .main-box{
     background-color: rgb(226, 222, 222);
-    max-width: 1200px ;
-    height: 100vh;
-    margin: 2rem auto;
-   
-
+    height: 80vh;
+    margin: 5rem  ;
+    overflow: hidden;
 }
 .side-bar{
     width: 350px;
     background-color: rgb(236, 236, 236);
     border-right: 0.5px solid rgb(175, 174, 174);
+    height: 100%;
+   
 }
+
 .user img{
     width: 60px;
-    height: 60px;
     aspect-ratio: 1/1;
     border-radius: 50%;
     padding: .5rem;
+    object-fit: cover;
+    
+}
+.notification{
+    background-color: lightskyblue;
+    padding: 1rem 0;
+    flex-shrink: 0;
+}
+.bell{
+    width: 50px;
+    height: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: 0 .5rem;
+
 }
 
 .chat-display{
     background-color: rgb(236, 236, 236);;
+    height: 100%;
+}
+
+.chat-room{
+  
+    background-image: url("../img/mine.jpg");
 }
