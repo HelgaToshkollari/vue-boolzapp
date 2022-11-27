@@ -50,19 +50,33 @@
                                 <input class="form-control " type="search" placeholder="Cerca o inizia una nuova chat" aria-label="Search">
                         </form>
                     </div>
+                  
                     <div class="contacts list-group flex-grow-1 overflow-auto">
-                       
-                        <div class="user list-group-item d-flex align-items-center "
-                        v-for="(user, i) in users" :key="i + user.name">
-                            <img :src="`img/avatar${user.avatar}.jpg`" alt="">
-                            <div class="m-0">
-                                <h6>{{user.name}}</h6>
-                                <p>Ultimo acesso oggi alle 12:00</p>
+                        <div>
+                           
+                            <div class="user list-group-item d-flex align-items-center  "
+
+
+                                @click="selectedUser = user"
+                                
+                                v-for="(user, i) in users" :key="i + user.name"
+                                :class="{'clicked-contact' : selectedUser === user }">
+                                <img :src="`img/avatar${user.avatar}.jpg`" alt="">
+                                
+                                <div class="m-0 ">
+                                    <h6>{{user.name}}</h6>
+                                    <small class="text-secondary">Ultimo messaggio inviato</small>
+                                  
+                                </div>
+                                <div class="ms-auto text-secondary">
+
+                                    <small>12:00</small>
+                                </div>
                             </div>
-                            
                         </div>
-                       
+
                     </div>
+
                     
                 </div>
             </div>
@@ -86,16 +100,25 @@
                         </div>
                         
                     </div>
+
                     <div class="chat-room flex-grow-1 ">
-                        
+                        <div class="chat-text  "
+                        :class="{'my-text' : messageObj.status === 'sent' }"
+                        v-for="messageObj in selectedUser.messages">
+                        {{messageObj.message}}
+                        <div class="text-secondary">
+                            <small>{{messageObj.date}}</small>
+                        </div>
+                       
+                        </div>
                         
                     </div>
-                    <div class="bottom-bar flex-shrink-0">
-                        <form class="d-flex m-1" role="search"> 
+                    <div class="bottom-bar flex-shrink-0" >
+                        <form class="d-flex m-1" role="search" @submit.prevent > 
+                            <input @keyup.enter="sentText" v-model="message" class="form-control " type="" placeholder="scrivi un messaggio..." aria-label="" >
                             <button class="btn btn-light" type="submit">
-                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <i class="fa-solid fa-paper-plane"></i>
                             </button>
-                            <input class="form-control " type="search" placeholder="Cerca o inizia una nuova chat" aria-label="Search">
                         </form>
                         
                     </div>
@@ -105,9 +128,7 @@
             </div>
             
         </div>
-
         
-
 
     </div>
     <script src="js/main.js"></script>
