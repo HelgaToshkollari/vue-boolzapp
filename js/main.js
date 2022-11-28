@@ -279,23 +279,28 @@ const app = createApp({
       let response = {
         date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'),
         message: 'ok',
-        status: '',
+        status: 'received',
       }
       this.selectedUser.messages.push(response);
 
            
     },
     searchContact(){
-      return this.users.filter(findContact => {
-        return findContact.name.toLowerCase().includes(this.searchHere.toLowerCase())
-        
-      })
+      this.users.forEach((findContact) => {
+        let searchName = findContact.name.toLowerCase();
+        if(searchName.includes(this.searchHere.toLowerCase())){
+          findContact.visible = true
+        }else{
+          findContact.visible = false
+        }
+      }) 
 
     },
 
   },
   beforeMount(){
     this.selectedUser = this.users[0]
-  }
+  },
+
 
 }).mount('#app')
