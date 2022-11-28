@@ -1,13 +1,9 @@
-/*Milestone 1
- Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) 
- e dall’interlocutore (bianco) assegnando due classi CSS diverse
-Visualizzazione dinamica della lista contatti:
- tramite la direttiva v-for, visualizzare nome e immagine di ogni contatto*/
- const {createApp} = Vue;
- const app = createApp({
-    data (){
-        return{
-            users: 
+
+const {createApp} = Vue;
+const app = createApp({
+  data (){
+      return{
+        users: 
             [
                 {
                     name: 'Michele',
@@ -254,47 +250,52 @@ Visualizzazione dinamica della lista contatti:
                     ],
                 }
 
-            ],
-            selectedUser: null,
-            message: "",
-        }
+        ],
+        selectedUser: null,
+        message: "",
+        searchHere:"",
+      }
+  },
+  methods:{
+    sentText(){
+      console.log(this.message)
+      let message = {
+        date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'),
+        message: this.message,
+        status: 'sent',
+
+      }
+      this.selectedUser.messages.push(message);
+
+      this.message= '',
+
+      setTimeout(()=>{
+        this.responseText()
+      }, 1000);
+
 
     },
-    methods:{
-        sentText(){
-            console.log(this.message)
-            let message = {
-                date: '10/01/2020 15:30:55',
-                message: this.message,
-                status: 'sent'
-
-            }
-            this.selectedUser.messages.push(message);
-
-            this.message= ''
-
-            setTimeout(()=>{
-                this.responseText()
-            }, 1000);
-
-
-        },
-        responseText(){
-            let response = {
-                date: '10/01/2020 15:30:55',
-                message: 'ok',
-                status: ''
-
-            }
-            this.selectedUser.messages.push(response);
+    responseText(){
+      let response = {
+        date: luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss'),
+        message: 'ok',
+        status: '',
+      }
+      this.selectedUser.messages.push(response);
 
            
-        }
-
+    },
+    searchContact(){
+      return this.users.filter(findContact => {
+        return findContact.name.toLowerCase().includes(this.searchHere.toLowerCase())
+        
+      })
 
     },
-    beforeMount(){
-        this.selectedUser = this.users[0]
-    }
 
- }).mount('#app')
+  },
+  beforeMount(){
+    this.selectedUser = this.users[0]
+  }
+
+}).mount('#app')
