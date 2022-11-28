@@ -284,23 +284,19 @@ const app = createApp({
       this.selectedUser.messages.push(response);
 
            
-    },
-    searchContact(){
-      this.users.forEach((findContact) => {
-        let searchName = findContact.name.toLowerCase();
-        if(searchName.includes(this.searchHere.toLowerCase())){
-          findContact.visible = true
-        }else{
-          findContact.visible = false
-        }
-      }) 
-
-    },
+    }
 
   },
   beforeMount(){
     this.selectedUser = this.users[0]
   },
+  computed: {
+    filteredList() {
+      return this.users.filter(findContact => {
+        return findContact.name.toLowerCase().includes(this.searchHere.toLowerCase())
+      })
+    }
+  }
 
 
 }).mount('#app')
